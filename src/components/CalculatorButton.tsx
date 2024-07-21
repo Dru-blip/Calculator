@@ -1,20 +1,16 @@
-import { Button } from "@mantine/core";
-import { IButton } from "../types";
-import { useContext } from "react";
-import { CalculatorContext } from "../context";
-import { create, all } from 'mathjs'
+import {Button} from "@mantine/core";
+import {IButton} from "../types";
+import {useContext} from "react";
+import {CalculatorContext} from "../context";
 import Engine from "../engine";
-
-const config = {}
-const math = create(all, config)
 
 
 interface Props {
     button: IButton
 }
 
-export default function CalculatorButton({ button }: Props) {
-    const { expression, setExpression, setResult } = useContext(CalculatorContext)
+export default function CalculatorButton({button}: Props) {
+    const {expression, setExpression} = useContext(CalculatorContext)
     const onClick = () => {
         switch (button.type) {
             case "number":
@@ -24,7 +20,7 @@ export default function CalculatorButton({ button }: Props) {
             }
             case "command": {
                 if (button.opName === 'equals') {
-                    Engine.run(expression.replace("x","*").replace("÷","/"))
+                    Engine.run(expression.replace("x", "*").replace("÷", "/"))
                 }
                 break
             }
@@ -34,7 +30,7 @@ export default function CalculatorButton({ button }: Props) {
         }
     }
     if (button.opName === 'equals') {
-        return <Button onClick={onClick} className="h-full text-2xl font-semibold"  >{button.label}</Button>
+        return <Button onClick={onClick} className="h-full text-2xl font-semibold">{button.label}</Button>
     }
-    return <Button onClick={onClick} className="h-full text-2xl font-semibold" variant="default" >{button.label}</Button>
+    return <Button onClick={onClick} className="h-full text-2xl font-semibold" variant="default">{button.label}</Button>
 }

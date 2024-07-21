@@ -1,0 +1,18 @@
+
+
+
+//production rule for parsing expressions that include symbols for comparison operators
+comparison     → term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
+
+// production rule for parsing expressions that include symbols + or - (eg 5-6 || 6+2)
+term           → <factor> ( ( "-" | "+" ) <factor> )* ;
+
+// production rule for parsing expressions that include symbols / or * (eg 5*6 || 6/2)
+factor         → <unary> ( ( "/" | "*" ) <unary> )*
+
+// production rule for parsing unary expressions containing ! or - symbols (eg: 5! or -2)
+unary          → ( "!" | "-" ) <unary> | <primary>
+
+// rule for parsing expression containing numbers or grouping expressions (eg: "(5+6)")
+primary        →  <number>  | "(" <expression> ")"
+number → [0-9]

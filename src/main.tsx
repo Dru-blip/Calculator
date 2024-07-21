@@ -4,7 +4,7 @@ import App from './App.tsx'
 import '@mantine/core/styles.css';
 import './index.css'
 import { MantineProvider } from '@mantine/core';
-import { CalculatorContextProvider } from './context/CalculatorContext.tsx';
+import { CalculatorContextProvider } from './context';
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
