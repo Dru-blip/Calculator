@@ -16,8 +16,8 @@ export class Literal implements Expression {
 export class BinaryExpression implements Expression {
   constructor(
     public op: Token,
-    public left: Expression,
-    public right: Expression,
+    public left: Expression|null,
+    public right: Expression|null,
   ) {}
   accept(visitor: Visitor): CalcObject {
     return visitor.visit_binary(this);

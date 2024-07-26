@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function CalculatorButton({button}: Props) {
-    const {expression, setExpression} = useContext(CalculatorContext)
+    const {expression, setExpression,setResult} = useContext(CalculatorContext)
     const onClick = () => {
         switch (button.type) {
             case "number":
@@ -19,8 +19,17 @@ export default function CalculatorButton({button}: Props) {
                 break
             }
             case "command": {
-                if (button.opName === 'equals') {
-                    Engine.run(expression.replace("x", "*").replace("÷", "/"))
+                switch(button.opName){
+                    case "equals":{
+                        const result=Engine.run(expression.replace("x", "*").replace("÷", "/")).toString()
+                        setResult(result)
+                        break
+                    }
+                    case "clear all":{
+                        setExpression("")
+                        setResult("0")
+                        break
+                    }
                 }
                 break
             }

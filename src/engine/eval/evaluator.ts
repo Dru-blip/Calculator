@@ -8,8 +8,14 @@ export default class Evaluator implements Visitor {
     return new NumberObject(node.token.literal as number);
   }
   visit_binary(node: nodes.BinaryExpression): CalcObject {
-    const left = node.left.accept(this);
-    const right = node.right.accept(this);
+    const left = node.left!.accept(this);
+    let right=null;
+
+    if(!node.right){
+      right=left
+    }else{
+      right=node.right.accept(this)
+    }
 
     switch (node.op.type) {
       case TokenType.PLUS: {

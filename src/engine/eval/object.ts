@@ -10,6 +10,7 @@ export interface CalcObject {
   sub(other: CalcObject): CalcObject;
   mul(other: CalcObject): CalcObject;
   div(other: CalcObject): CalcObject;
+  toString():string
 }
 
 export class NumberObject implements CalcObject {
@@ -26,6 +27,9 @@ export class NumberObject implements CalcObject {
   }
   div(other: NumberObject): NumberObject {
     return new NumberObject(this.val / other.val);
+  }
+  toString(): string {
+    return `${this.val}`
   }
 }
 

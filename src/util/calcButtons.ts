@@ -3,8 +3,8 @@ import { IButton } from "../types"
 
 export const common: IButton[] = [
     { label: "%", type: "operator", opName: "modulo" },
-    { label: "CE", type: "command" },
-    { label: "C", type: "command" },
+    { label: "CE", type: "command",opName:"clear entry" },
+    { label: "C", type: "command",opName:"clear all" },
     { label: "DEL", type: "command" },
     { label: "1/x", type: "operator", opName: "one division" },
     { label: "x²", type: "operator", opName: "sq" },

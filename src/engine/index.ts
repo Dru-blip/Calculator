@@ -8,8 +8,8 @@ export default class Engine {
     const lexer = new Lexer(expression);
     const parser = new Parser(lexer);
     const evaluator = new Evaluator();
-    const root: Expression = parser.parse();
+    const root: Expression = parser.parse()!;
     const result = root.accept(evaluator);
-    console.log(result);
+    return result
   }
 }

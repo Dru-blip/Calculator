@@ -31,12 +31,12 @@ export default class Parser {
     return expr;
   }
 
-  private parseExpression(): Expression {
+  private parseExpression(): Expression |null{
     const expr = this.parseTerm();
     return expr;
   }
 
-  private parseTerm(): Expression {
+  private parseTerm(): Expression |null{
     let expr = this.parseFactor();
     while (this.check(TokenType.MINUS) || this.check(TokenType.PLUS)) {
       const operator = this.currentToken!;
@@ -47,7 +47,7 @@ export default class Parser {
     return expr;
   }
 
-  private parseFactor(): Expression {
+  private parseFactor(): Expression|null {
     let expr = this.parseUnary();
     while (this.check(TokenType.SLASH) || this.check(TokenType.ASTERISK)) {
       const operator = this.currentToken!;
@@ -58,13 +58,16 @@ export default class Parser {
     return expr;
   }
 
-  private parseUnary(): Expression {
+  private parseUnary(): Expression|null{
     return this.parseNumber();
   }
 
-  private parseNumber(): Expression {
+  private parseNumber(): Expression|null {
     const literal = this.currentToken!;
     this.advance();
+    if(literal.type===TokenType.EOE){
+      return null
+    }
     return new Literal(literal);
   }
 }
